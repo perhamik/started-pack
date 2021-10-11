@@ -143,16 +143,3 @@ $screen-xxxl: 1680px;
 		@content;
 	}
 }
-
-//------------------------------------------------------------
-@mixin hover {
-	@media only screen and (hover: hover) and (pointer: fine) {
-		@content;
-	}
-}
-
-@mixin notHover {
-	@media only screen and (pointer: coarse) and (pointer: none) {
-		@content;
-	}
-}
