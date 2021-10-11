@@ -1,0 +1,72 @@
+$transitionTimeDefault: 350ms;
+$transitionStepDefault: 250ms;
+$transitionDelayDefault: 0ms;
+$transitionDelayStepDefault: 200ms;
+
+@use './mixins' as *;
+
+@function getTransitionTime($index: 0) {
+	@return $transitionTimeDefault + ($transitionStepDefault * $index);
+}
+
+@function getTransitionDelay($index: 0) {
+	@return $transitionDelayDefault + ($transitionDelayStepDefault * $index);
+}
+
+@mixin transition($time: 2, $delay: 0, $type: ease) {
+	& {
+		transition-duration: getTransitionTime($time);
+		transition-timing-function: $type;
+		transition-delay: getTransitionDelay($delay);
+	}
+}
+
+@mixin underline {
+	& {
+		position: relative;
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 100%;
+			height: 1px;
+			inset: auto 0 0;
+			margin-left: 0;
+			margin-right: 0;
+			background-color: currentColor;
+			transition-duration: inherit;
+			transition-timing-function: inherit;
+		}
+	}
+}
+
+@mixin flex-center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+@mixin no-scrollbar {
+	&::-webkit-scrollbar {
+		width: 3px;
+		height: 3px;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+	&::-webkit-scrollbar-track-piece {
+		background-color: transparent;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: transparent;
+	}
+}
+
+@mixin text-line-clamp($lines: 10) {
+	display: -webkit-box;
+	-webkit-line-clamp: #{$lines};
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}

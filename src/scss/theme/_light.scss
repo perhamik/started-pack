@@ -1,0 +1,18 @@
+@use './colors';
+
+$colors: colors.getTheme('light');
+
+:root {
+	@each $name, $color in $colors {
+		--#{$name}: #{$color};
+	}
+}
+
+* {
+	color: map-get($colors, 'text');
+}
+
+body,
+.wrapper {
+	background-color: map-get($colors, 'bg');
+}

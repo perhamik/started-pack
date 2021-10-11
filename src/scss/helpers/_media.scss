@@ -1,0 +1,158 @@
+// Media
+// @include screen-xxxl {}   $screen-xl: 1680px;
+// @include screen-xxl {}   $screen-xl: 1440px;
+// @include screen-xl {}   $screen-xl: 1280px;
+// @include screen-xhl {}  $screen-xhl: 1080px;
+// @include screen-lg {}   $screen-lg: 992px;
+// @include screen-md {}   $screen-md: 768px;
+// @include screen-sm {}   $screen-sm: 576px;
+// @include screen-xs {}   $screen-xs: 480px;
+
+// Defined screen size
+$screen-xs: 480px;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xhl: 1080px;
+$screen-xl: 1280px;
+$screen-xxl: 1440px;
+$screen-xxxl: 1680px;
+
+//------------------------------------------------------------
+//---------------- MEDIA (MAX-WIDTH: $X) ---------------------
+//------------------------------------------------------------
+
+@mixin landscape {
+	@media (orientation: landscape) {
+		@content;
+	}
+}
+
+// max-width: 480px
+@mixin screen-xs {
+	@media only screen and (max-width: #{$screen-xs}) {
+		@content;
+	}
+}
+
+// max-width: 576px
+@mixin screen-sm {
+	@media only screen and (max-width: #{$screen-sm}) {
+		@content;
+	}
+}
+
+// max-width: 768px
+@mixin screen-md {
+	@media only screen and (max-width: #{$screen-md}) {
+		@content;
+	}
+}
+
+// max-width: 992px
+@mixin screen-lg {
+	@media only screen and (max-width: #{$screen-lg}) {
+		@content;
+	}
+}
+
+// max-width: 1080px
+@mixin screen-xhl {
+	@media only screen and (max-width: #{$screen-xhl}) {
+		@content;
+	}
+}
+
+// max-width: 1280px
+@mixin screen-xl {
+	@media only screen and (max-width: #{$screen-xl}) {
+		@content;
+	}
+}
+
+// max-width: 1440px
+@mixin screen-xxl {
+	@media only screen and (max-width: #{$screen-xxl}) {
+		@content;
+	}
+}
+
+// max-width: 1680px
+@mixin screen-xxxl {
+	@media only screen and (max-width: #{$screen-xxxl}) {
+		@content;
+	}
+}
+
+//------------------------------------------------------------
+//---------------- MEDIA (MIN-WIDTH: $X) ---------------------
+//------------------------------------------------------------
+
+// min-width: 481px
+@mixin screen-xs-up {
+	@media only screen and (min-width: #{$screen-xs}) {
+		@content;
+	}
+}
+
+// min-width: 577px
+@mixin screen-sm-up {
+	@media only screen and (min-width: #{$screen-sm + 1}) {
+		@content;
+	}
+}
+
+// min-width: 769px
+@mixin screen-md-up {
+	@media only screen and (min-width: #{$screen-md + 1}) {
+		@content;
+	}
+}
+
+// min-width: 993px
+@mixin screen-lg-up {
+	@media only screen and (min-width: #{$screen-lg + 1}) {
+		@content;
+	}
+}
+
+// min-width: 1081px
+@mixin screen-xhl-up {
+	@media only screen and (min-width: #{$screen-xhl + 1}) {
+		@content;
+	}
+}
+
+// min-width: 1201px
+@mixin screen-xl-up {
+	@media only screen and (min-width: #{$screen-xl + 1}) {
+		@content;
+	}
+}
+
+// min-width: 1441px
+@mixin screen-xxl-up {
+	@media only screen and (min-width: #{$screen-xxl + 1}) {
+		@content;
+	}
+}
+
+// min-width: 1681px
+@mixin screen-xxxl-up {
+	@media only screen and (min-width: #{$screen-xxxl + 1}) {
+		@content;
+	}
+}
+
+//------------------------------------------------------------
+@mixin hover {
+	@media only screen and (hover: hover) and (pointer: fine) {
+		@content;
+	}
+}
+
+@mixin notHover {
+	@media only screen and (pointer: coarse) and (pointer: none) {
+		@content;
+	}
+}

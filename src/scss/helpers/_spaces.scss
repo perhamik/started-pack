@@ -1,0 +1,25 @@
+@use './mixins' as *;
+
+$spaces: (
+	'xxxs': 32px,
+	'xxs': 40px,
+	'xs': 56px,
+	's': 80px,
+	'm': 96px,
+	'l': 112px,
+	'xl': 160px,
+	'xxl': 224px,
+);
+
+@include screen-sm {
+	$spaces: (
+		'xxxs': 16px,
+		'xxs': 24px,
+		'xs': 32px,
+		's': 48px,
+		'm': 64px,
+		'l': 80px,
+		'xl': 104px,
+		'xxl': 160px,
+	);
+}

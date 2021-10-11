@@ -1,0 +1,43 @@
+// Font
+// @include font (16px, 1.5, 500, normal);
+@mixin font($font-size, $line-height: normal, $font-weight: normal, $letter-spacing: normal) {
+	font-size: $font-size;
+	// line-height
+	@if $line-height==normal {
+		line-height: normal;
+	} @else {
+		line-height: $line-height;
+	}
+	// font-weight
+	@if $font-weight==normal {
+		font-weight: normal;
+	} @else {
+		font-weight: $font-weight;
+	}
+	// letter-spacing
+	@if $letter-spacing==normal {
+		letter-spacing: normal;
+	} @else {
+		letter-spacing: $letter-spacing;
+	}
+}
+
+@mixin hover {
+	@media only screen and (hover: hover) and (pointer: fine) {
+		@content;
+	}
+}
+
+@mixin notHover {
+	@media only screen and (pointer: coarse) and (pointer: none) {
+		@content;
+	}
+}
+
+@mixin safari {
+	@media not all and (min-resolution: 0.001dpcm) {
+		@supports (-webkit-appearance: none) {
+			@content;
+		}
+	}
+}
