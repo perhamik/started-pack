@@ -1,0 +1,177 @@
+@use '../helpers' as *;
+
+@mixin _icon-base($margin: 12px) {
+	&::after {
+		content: '';
+		display: block;
+		width: 20.5px;
+		height: 11.43px;
+		margin-left: 12px;
+		margin-right: 12px;
+		background-image: url(../img/arrow.svg);
+		background-size: contain;
+		transition: inherit;
+	}
+}
+
+@mixin icon {
+	@include _icon-base;
+
+	&.button-xs,
+	&.button-extra-small {
+		&::after {
+			width: 17.2px;
+			height: 8.6px;
+			margin-left: 8px;
+			margin-right: 8px;
+		}
+	}
+
+	@include hover {
+		&:hover {
+			&::after {
+				transform: translateX(12px);
+			}
+		}
+
+		&.button-xs,
+		&.button-extra-small {
+			&:hover {
+				&::after {
+					transform: translateX(8px);
+				}
+			}
+		}
+	}
+}
+
+@mixin icon-filled {
+	.button__text {
+		transition: inherit;
+		@include _icon-base;
+
+		&::after {
+			filter: saturate(0) brightness(3);
+		}
+	}
+
+	@include hover {
+		&:hover {
+			.button__text {
+				&::after {
+					transform: translateX(12px);
+				}
+			}
+		}
+	}
+}
+
+%text {
+	@include upper;
+	@include button-18;
+
+	@include screen-sm {
+		@include button-mobile;
+	}
+}
+
+.button {
+	@include flex-row-center;
+	min-width: 244px;
+	transition: 300ms ease 0ms;
+	cursor: pointer;
+
+	@include screen-sm-up {
+		width: 448px;
+	}
+
+	&__text {
+		display: flex;
+		align-items: baseline;
+		color: inherit;
+		// padding-block-start: 0.24em;
+	}
+
+	&-filled {
+		&,
+		&-icon {
+			@include bevel-border(12px, 1px);
+			@extend %text;
+			padding: 16px;
+			color: var(--text);
+			background-color: var(--red);
+
+			@include hover {
+				&:hover {
+					background-color: var(--red-darker);
+				}
+			}
+
+			@include screen-sm {
+				padding: {
+					top: 6px;
+					bottom: 6px;
+				}
+			}
+		}
+
+		&-icon {
+			@include icon-filled;
+		}
+	}
+
+	&-bordered {
+		&,
+		&-icon {
+			@include bevel-border(12px, 1px, var(--red));
+			@extend %text;
+			padding: 16px;
+			background-color: var(--black);
+
+			@include hover {
+				&:hover {
+					background-color: var(--red);
+				}
+			}
+		}
+
+		&-icon {
+			@include icon-filled;
+		}
+	}
+
+	&-invisible {
+		@include underline(0%);
+
+		@include hover {
+			&:hover {
+				@include underline(100%);
+			}
+		}
+
+		&,
+		&-icon {
+			@extend %text;
+			height: fit-content;
+			color: var(--red);
+			background-color: transparent;
+			transition: 400ms ease-in-out 150ms;
+		}
+
+		&-icon {
+			@include icon;
+
+			&.button {
+				&-s,
+				&-small {
+					@include button-14;
+				}
+
+				&-xs,
+				&-extra-small {
+					@include button-10;
+				}
+			}
+		}
+	}
+}

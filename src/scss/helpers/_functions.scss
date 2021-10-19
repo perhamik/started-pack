@@ -4,3 +4,17 @@
 	);
 	@return map-merge($map, $new);
 }
+
+@function getTransitionTime($index: 0) {
+	@return $transitionTimeDefault + ($transitionStepDefault * $index);
+}
+
+@function getTransitionDelay($index: 0) {
+	@return $transitionDelayDefault + ($transitionDelayStepDefault * $index);
+}
+
+@function cut-border($size: 12px) {
+	$st: $size;
+	$en: calc(100% - #{$size});
+	@return polygon($st 0, $en 0%, 100% $st, 100% $en, $en 100%, $st 100%, 0% $en, 0% $st);
+}

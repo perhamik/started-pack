@@ -13,6 +13,6 @@ $colors: colors.getTheme('dark');
 }
 
 body,
-.wrapper {
+.page {
 	background-color: map-get($colors, 'bg');
 }

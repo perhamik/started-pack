@@ -1,44 +1,18 @@
-$colorsLight: (
-	'beige': #d8cdba,
-	'dark-grey': #231f20,
-	'bg': #c6c6c6,
-	'text': #231f20,
-	'teal': #199dae,
-	'white': #000,
-	'black': #000000,
-	'light-grey': #c6c6c6,
-	'brown': #bf7a62,
-	'mid-grey': #979797,
-	'dark-brown': #6f3438,
-	'error': #ff3737,
-	'darker-grey': #181616,
-	'dark-teal': #14818f,
-	'purple': #5a19ac,
-	'input-bg': #c4c4c4,
-	'red': #e3322f,
-	'name-title': #398aea,
-);
-
 $colorsDark: (
-	'beige': #d8cdba,
-	'dark-grey': #231f20,
-	'bg': #231f20,
-	'text': #ffffff,
-	'teal': hsl(187, 75%, 39%, 100%),
+	'red': #ea5445,
+	'red-darker': rgb(187, 67, 55),
+	'green': #62d06d,
+	'yellow': #f7c444,
 	'white': #ffffff,
 	'black': #000000,
-	'light-grey': #c6c6c6,
-	'brown': #bf7a62,
-	'mid-grey': #979797,
-	'dark-brown': #6f3438,
-	'error': #ff3737,
-	'darker-grey': #181616,
-	'dark-teal': #14818f,
-	'purple': #5a19ac,
-	'input-bg': #c4c4c4,
-	'red': #e3322f,
-	'name-title': #398aea,
+	'dark': #1f1f1f,
+	'grey': #333333,
+	'grey-light': #454545,
+	'bg': #000000,
+	'text': #ffffff,
 );
+
+$colorsLight: $colorsDark;
 
 $colors: ();
 

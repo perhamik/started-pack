@@ -1,0 +1,52 @@
+@use '../helpers' as *;
+
+@mixin card-container($size: 32px) {
+	& {
+		$bg: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4));
+		$hoverImage: linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0));
+		$hoverColor: var(--red);
+
+		$padding: ($size * 0.5) * 1.5; //32px -> 24px
+
+		.card__container {
+			display: grid;
+			grid-gap: 8px;
+			padding: {
+				top: $padding;
+				bottom: $padding;
+			}
+			max-width: calc(100% - #{$size * 2});
+		}
+
+		cursor: pointer;
+		background: var(--bg);
+		transition: 410ms ease-in 50ms;
+		@include bevel-border($size, 1px, $bg, $hoverColor);
+	}
+}
+
+.card {
+	text-align: center;
+	&__container {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&-catalog {
+		&,
+		&-l {
+			@include card-container(32px);
+			max-width: 352px;
+		}
+
+		&-m {
+			@include card-container(18px);
+			max-width: 256px;
+		}
+
+		&-s {
+			@include card-container(12px);
+			max-width: 160px;
+		}
+	}
+}

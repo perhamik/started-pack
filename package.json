@@ -1,17 +1,27 @@
 {
-	"name": "tiras",
+	"name": "starter-kit",
 	"version": "1.0.0",
 	"author": "sevnpro",
 	"license": "MIT",
 	"private": true,
 	"browserslist": "> 0.5%, last 2 versions, not dead",
-	"source": "src/html/index.html",
+	"source": [
+		"src/html/index.html",
+		"src/html/about.html",
+		"src/html/ui.html"
+	],
+	"targets": {
+		"default": {
+			"distDir": "./dist"
+		}
+	},
 	"scripts": {
-		"run": "parcel"
+		"dev": "parcel"
 	},
 	"devDependencies": {
 		"@parcel/config-default": "^2.0.0-rc.0",
 		"@parcel/core": "^2.0.0-rc.0",
+		"@parcel/transformer-image": "2.0.0-rc.0",
 		"@parcel/transformer-sass": "2.0.0-rc.0",
 		"parcel": "^2.0.0-rc.0",
 		"posthtml-doctype": "^1.1.1",

@@ -3,14 +3,23 @@ $transitionStepDefault: 250ms;
 $transitionDelayDefault: 0ms;
 $transitionDelayStepDefault: 200ms;
 
+@use './functions' as *;
 @use './mixins' as *;
 
-@function getTransitionTime($index: 0) {
-	@return $transitionTimeDefault + ($transitionStepDefault * $index);
+@mixin button-18 {
+	@include font(18px, 24px, 800, 0.12em);
 }
 
-@function getTransitionDelay($index: 0) {
-	@return $transitionDelayDefault + ($transitionDelayStepDefault * $index);
+@mixin button-14 {
+	@include font(14px, 18px, 800, 0.12em);
+}
+
+@mixin button-10 {
+	@include font(10px, 16px, 800, 0.12em);
+}
+
+@mixin button-mobile {
+	@include font(14px, 24px, 800, 0.12em);
 }
 
 @mixin transition($time: 2, $delay: 0, $type: ease) {
@@ -21,26 +30,35 @@ $transitionDelayStepDefault: 200ms;
 	}
 }
 
-@mixin underline {
+@mixin upper {
+	text-transform: uppercase;
+}
+
+@mixin underline($initWidth: 100%) {
 	& {
 		position: relative;
 		&::after {
 			content: '';
 			display: block;
 			position: absolute;
-			width: 100%;
+			width: $initWidth;
 			height: 1px;
 			inset: auto 0 0;
 			margin-left: 0;
 			margin-right: 0;
 			background-color: currentColor;
-			transition-duration: inherit;
-			transition-timing-function: inherit;
 		}
 	}
 }
 
-@mixin flex-center {
+@mixin flex-row-center {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin flex-col-center {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -48,19 +66,34 @@ $transitionDelayStepDefault: 200ms;
 	height: 100%;
 }
 
-@mixin no-scrollbar {
-	&::-webkit-scrollbar {
-		width: 3px;
-		height: 3px;
+@mixin scrollbar {
+	overflow-y: scroll;
+	scrollbar-width: thin;
+	--bgScrollbar: rgba(169, 169, 169, 0.5);
+	--outlineScrollbar: rgba(112, 128, 144, 0.3);
+
+	&:hover,
+	&:focus {
+		--bgScrollbar: rgba(169, 169, 169, 0.7);
+		--outlineScrollbar: rgba(112, 128, 144, 0.5);
 	}
-	&::-webkit-scrollbar-track {
-		background-color: transparent;
-	}
-	&::-webkit-scrollbar-track-piece {
-		background-color: transparent;
-	}
-	&::-webkit-scrollbar-thumb {
-		background-color: transparent;
+
+	&,
+	* {
+		&::-webkit-scrollbar {
+			width: 8px;
+			height: 6px;
+		}
+		&::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.15);
+		}
+		&::-webkit-scrollbar-track-piece {
+			background-color: rgba(128, 128, 128, 0.05);
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--bgScrollbar);
+			outline: 1px solid var(--outlineScrollbar);
+		}
 	}
 }
 
@@ -69,4 +102,50 @@ $transitionDelayStepDefault: 200ms;
 	-webkit-line-clamp: #{$lines};
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+
+@mixin bevel-border($size: 12px, $width: 2px, $color: inherit, $hoverColor: inherit) {
+	position: relative;
+	z-index: 0;
+	clip-path: cut-border($size);
+
+	&,
+	&::before,
+	&::after {
+		overflow: hidden;
+	}
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		z-index: -1;
+		transition: inherit;
+	}
+
+	&::before {
+		background: inherit;
+		clip-path: cut-border($size - $width);
+		width: calc(100% - #{$width * 4});
+		height: calc(100% - #{$width * 4});
+	}
+
+	&::after {
+		background: $color;
+		z-index: -2;
+		width: 100%;
+		height: 100%;
+		background-blend-mode: overlay;
+	}
+
+	@include hover {
+		&:hover {
+			&::after {
+				background-color: $hoverColor;
+			}
+		}
+	}
 }

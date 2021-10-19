@@ -37,7 +37,7 @@ $path: '../fonts/';
 	src: local('Neue Machina'), url($path + 'NeueMachina-Bold.ttf') format('truetype');
 	font-display: swap;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 @font-face {
@@ -45,7 +45,7 @@ $path: '../fonts/';
 	src: local('Neue Machina'), url($path + 'NeueMachina-Ultrabold.ttf') format('truetype');
 	font-display: swap;
 	font-style: normal;
-	font-weight: 700;
+	font-weight: 800;
 }
 
 @font-face {

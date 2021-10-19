@@ -1,0 +1,14 @@
+@use '../helpers';
+
+.page {
+	margin: 0;
+	width: 100vw;
+}
+
+.container {
+	margin: {
+		left: auto;
+		right: auto;
+	}
+	max-width: 1120px;
+}
