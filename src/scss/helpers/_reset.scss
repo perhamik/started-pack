@@ -8,6 +8,7 @@ html {
 
 body {
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -27,17 +28,22 @@ body {
 	}
 }
 
+a {
+	color: #fff;
+}
+
 a,
 button {
-	font-size: 1rem;
+	display: block;
 	text-decoration: none;
-	color: inherit;
+	width: fit-content;
 }
 
 select,
 textarea,
 input,
 button {
+	border-radius: 0;
 	appearance: none;
 	border: none;
 	outline: none;
@@ -60,6 +66,7 @@ img {
 	max-height: 100%;
 	object-fit: contain;
 	user-select: none;
+	display: flex;
 }
 
 picture,

@@ -1,31 +1,38 @@
 {
 	"name": "starter-kit",
-	"version": "1.0.0",
+	"version": "3.0.0",
 	"author": "sevnpro",
 	"license": "MIT",
 	"private": true,
-	"browserslist": "> 0.5%, last 2 versions, not dead",
-	"source": [
-		"src/html/index.html",
-		"src/html/about.html",
-		"src/html/ui.html"
-	],
+	"browserslist": "> 0.5%, last 10 versions, not dead",
 	"targets": {
 		"default": {
-			"distDir": "./dist"
-		}
+			"distDir": "./dist",
+			"context": "browser",
+			"outputFormat": "global",
+			"isLibrary": false,
+			"optimize": true,
+			"includeNodeModules": false
+		},
+		"main": false
 	},
 	"scripts": {
-		"dev": "parcel"
+		"del": "del-cli --force dist",
+		"dev": "parcel serve src/html/*.html --no-cache --port 3000",
+		"serve": "parcel serve src/html/*.html --no-cache --port 3000 --open",
+		"build": "parcel build src/html/*.html --no-cache --no-content-hash --no-scope-hoist",
+		"prod": "del-cli --force dist && parcel build src/html/*.html --no-cache --no-content-hash --no-scope-hoist"
+	},
+	"dependencies": {
+		"parcel": "latest"
 	},
 	"devDependencies": {
-		"@parcel/config-default": "^2.0.0-rc.0",
-		"@parcel/core": "^2.0.0-rc.0",
-		"@parcel/transformer-image": "2.0.0-rc.0",
-		"@parcel/transformer-sass": "2.0.0-rc.0",
-		"parcel": "^2.0.0-rc.0",
-		"posthtml-doctype": "^1.1.1",
-		"posthtml-include": "^1.7.2",
+		"@parcel/packager-raw-url": "^2.0.0",
+		"@parcel/transformer-sass": "latest",
+		"@parcel/transformer-webmanifest": "^2.0.0",
+		"del-cli": "^4.0.1",
+		"posthtml-doctype": "latest",
+		"posthtml-include": "latest",
 		"sass": "^1.42.1"
 	}
 }

@@ -1,0 +1,68 @@
+@use '../helpers' as *;
+@use '../font' as *;
+
+details {
+	summary {
+		cursor: pointer;
+		width: fit-content;
+		list-style: none;
+	}
+}
+
+.filter {
+	&__title {
+		white-space: nowrap;
+
+		@include upper;
+
+		@include screen-xhl-up {
+			@include h6;
+		}
+
+		@include screen-xhl {
+			color: var(--red);
+			@include font(18px, 24px, 800, 0.12em);
+			@include underline;
+		}
+
+		@include screen-sm {
+			@include font(14px, 24px, 800, 0.12em);
+		}
+	}
+
+	.content {
+		padding-top: 16px;
+		display: flex;
+		flex-flow: column;
+		gap: 8px;
+	}
+
+	label {
+		display: flex;
+		cursor: pointer;
+
+		input:checked {
+			& + span {
+				color: var(--red);
+				font-weight: 800;
+
+				&::before {
+					content: '';
+					display: block;
+					width: 4px;
+					height: 4px;
+					margin: auto;
+					border-radius: 50%;
+					background-color: var(--red);
+				}
+			}
+		}
+
+		span {
+			display: flex;
+			align-items: baseline;
+			gap: 8px;
+			transition: 350ms;
+		}
+	}
+}

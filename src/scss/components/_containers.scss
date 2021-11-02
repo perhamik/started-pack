@@ -1,14 +1,46 @@
-@use '../helpers';
+@use '../helpers' as *;
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
 
 .page {
+	position: relative;
+	display: flex;
+	flex-flow: column;
 	margin: 0;
-	width: 100vw;
+	width: 100%;
+	max-width: 100vw;
+	min-height: 100vh;
+}
+
+.main {
+	display: flex;
+	flex-flow: column;
+	flex: 1;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
 }
 
 .container {
+	max-width: 1200px;
 	margin: {
 		left: auto;
 		right: auto;
 	}
-	max-width: 1120px;
+	padding: {
+		left: 40px;
+		right: 40px;
+	}
+
+	@include screen-xhl {
+		max-width: 100vw;
+		padding: {
+			left: 16px;
+			right: 16px;
+		}
+	}
 }

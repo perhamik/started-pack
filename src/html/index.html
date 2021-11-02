@@ -7,8 +7,34 @@
   }'
 	></include>
 	<body>
-		<div class="page">
+		<div class="page init">
 			<include src="html/parts/header.html"></include>
+			<main class="main main-wrapper">
+				<div class="home">
+					<section class="test">
+						<!-- prettier-ignore -->
+						<include src="html/components/filter.html">
+							{
+								"title": "Filter Title",
+								"options": [
+									{
+										"name": "Option 1",
+										"value": "val-1"
+									},
+									{
+										"name": "Option 2",
+										"value": "val-2"
+									},
+									{
+										"name": "Option 3",
+										"value": "val-3"
+									}
+								]
+							}
+						</include>
+					</section>
+				</div>
+			</main>
 			<include src="html/parts/footer.html"></include>
 		</div>
 	</body>

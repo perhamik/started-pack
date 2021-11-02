@@ -34,7 +34,7 @@ $transitionDelayStepDefault: 200ms;
 	text-transform: uppercase;
 }
 
-@mixin underline($initWidth: 100%) {
+@mixin underline($initWidth: 100%, $offsetBottom: 0) {
 	& {
 		position: relative;
 		&::after {
@@ -43,7 +43,7 @@ $transitionDelayStepDefault: 200ms;
 			position: absolute;
 			width: $initWidth;
 			height: 1px;
-			inset: auto 0 0;
+			inset: auto 0 #{$offsetBottom};
 			margin-left: 0;
 			margin-right: 0;
 			background-color: currentColor;
@@ -54,7 +54,7 @@ $transitionDelayStepDefault: 200ms;
 @mixin flex-row-center {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: baseline;
 	justify-content: center;
 }
 
@@ -104,10 +104,15 @@ $transitionDelayStepDefault: 200ms;
 	overflow: hidden;
 }
 
-@mixin bevel-border($size: 12px, $width: 2px, $color: inherit, $hoverColor: inherit) {
+@mixin crop-border($tl: 12px, $br: $tl, $bl: $br, $tr: $tl) {
+	clip-path: cut-border($tl, $br, $bl, $tr);
+}
+
+@mixin bevel-border($size: 12px, $width: 2pt, $color: inherit, $hoverColor: inherit) {
 	position: relative;
 	z-index: 0;
-	clip-path: cut-border($size);
+
+	@include crop-border($size);
 
 	&,
 	&::before,
@@ -128,9 +133,9 @@ $transitionDelayStepDefault: 200ms;
 
 	&::before {
 		background: inherit;
-		clip-path: cut-border($size - $width);
 		width: calc(100% - #{$width * 4});
 		height: calc(100% - #{$width * 4});
+		@include crop-border($size - $width);
 	}
 
 	&::after {
@@ -141,11 +146,45 @@ $transitionDelayStepDefault: 200ms;
 		background-blend-mode: overlay;
 	}
 
+	&.hover {
+		&::after {
+			background-color: $hoverColor;
+		}
+	}
+
 	@include hover {
 		&:hover {
 			&::after {
 				background-color: $hoverColor;
 			}
+		}
+	}
+}
+
+@mixin arrow-bottom {
+	& {
+		position: relative;
+
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			margin: auto;
+			inset: 0;
+			width: 100%;
+			height: 1pt;
+			background-color: var(--white);
+			transform-origin: center;
+			transition: inherit;
+		}
+
+		&::before {
+			transform: translateX(-35%) rotate(45deg);
+		}
+
+		&::after {
+			transform: translateX(35%) rotate(-45deg);
 		}
 	}
 }

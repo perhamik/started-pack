@@ -1,2 +1,42 @@
-.header {
+@use '../helpers' as *;
+@use '../font' as *;
+
+// .header {
+
+// }
+
+.burger {
+	&.active {
+		.burger__line {
+			&:first-child {
+				top: 50%;
+				transform: rotate(-45deg);
+			}
+			&:nth-child(2) {
+				opacity: 0;
+			}
+			&:last-child {
+				bottom: calc(50% - 2px);
+				transform: rotate(45deg);
+			}
+		}
+	}
+
+	&__line {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 2px;
+		background-color: var(--text);
+		transition: 350ms linear;
+		transform-origin: center;
+
+		&:first-child {
+			top: 0;
+		}
+
+		&:last-child {
+			bottom: 0;
+		}
+	}
 }

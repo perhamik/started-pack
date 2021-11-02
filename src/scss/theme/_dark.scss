@@ -12,7 +12,6 @@ $colors: colors.getTheme('dark');
 	color: map-get($colors, 'text');
 }
 
-body,
-.page {
+body {
 	background-color: map-get($colors, 'bg');
 }

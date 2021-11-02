@@ -1,57 +1,9 @@
-$path: '../fonts/';
+$path: '../fonts/'; //relative path to folder with fonts
 
-@font-face {
-	font-family: 'Neue Machina';
-	src: local('Neue Machina'), url($path + 'NeueMachina-Regular.ttf') format('truetype');
-	font-display: swap;
-	font-style: normal;
-	font-weight: normal;
-}
-
-@font-face {
-	font-family: 'Neue Machina';
-	src: local('Neue Machina'), url($path + 'NeueMachina-Ultralight.ttf') format('truetype');
-	font-display: swap;
-	font-style: normal;
-	font-weight: 200;
-}
-
-@font-face {
-	font-family: 'Neue Machina';
-	src: local('Neue Machina'), url($path + 'NeueMachina-Light.ttf') format('truetype');
-	font-display: swap;
-	font-style: normal;
-	font-weight: 300;
-}
-
-@font-face {
-	font-family: 'Neue Machina';
-	src: local('Neue Machina'), url($path + 'NeueMachina-Medium.ttf') format('truetype');
-	font-display: swap;
-	font-style: normal;
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: 'Neue Machina';
-	src: local('Neue Machina'), url($path + 'NeueMachina-Bold.ttf') format('truetype');
-	font-display: swap;
-	font-style: normal;
-	font-weight: 700;
-}
-
-@font-face {
-	font-family: 'Neue Machina';
-	src: local('Neue Machina'), url($path + 'NeueMachina-Ultrabold.ttf') format('truetype');
-	font-display: swap;
-	font-style: normal;
-	font-weight: 800;
-}
-
-@font-face {
-	font-family: 'Neue Machina';
-	src: local('Neue Machina'), url($path + 'NeueMachina-Black.ttf') format('truetype');
-	font-display: swap;
-	font-style: normal;
-	font-weight: 900;
-}
+// @font-face {
+// 	font-family: 'Font Family Name';
+// 	src: url($path + 'FontFileName-Regular.ttf') format('truetype');
+// 	font-display: swap;
+// 	font-style: normal;
+// 	font-weight: 400;
+// }

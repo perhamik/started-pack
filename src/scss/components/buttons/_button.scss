@@ -1,0 +1,22 @@
+@use '../../helpers' as *;
+@use '../../font' as *;
+@use './mixins' as *;
+
+%text {
+	@include upper;
+}
+
+.button {
+	@include button;
+
+	&,
+	&__text {
+		@extend %text;
+	}
+
+	&__text {
+		display: flex;
+		align-items: baseline;
+		pointer-events: none;
+	}
+}

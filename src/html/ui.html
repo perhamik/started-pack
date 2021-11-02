@@ -3,31 +3,48 @@
 	<include
 		src="html/core/head.html"
 		locals='{
-		"title": "UI Kit"
+		"title": "Home"
   }'
 	></include>
 	<body>
-		<div class="page" style="padding: 2rem">
-			<div class="container" style="display: flex; align-items: center; flex-wrap: wrap; gap: 32px">
-				<button class="button button-filled"><span class="button__text">написати нам</span></button>
-				<button class="button button-filled-icon"><span class="button__text">написати нам</span></button>
-				<button class="button button-filled-icon button-xs"><span class="button__text">написати нам</span></button>
-				<button class="button button-bordered"><span class="button__text">написати нам</span></button>
-				<button class="button button-bordered-icon"><span class="button__text">написати нам</span></button>
-				<button class="button button-invisible"><span class="button__text">написати нам</span></button>
-				<button class="button button-invisible-icon"><span class="button__text">написати нам</span></button>
-				<div class="card card-catalog">
-					<div class="card__container">
-						<h6 class="h6 ttu">MISTO Security Platform</h6>
-						<p class="text-14">
-							інноваційна система передавання тривожних сповіщень, для організації пультів охоронного моніторингу
-						</p>
-						<figure class="card__picture">
-							<img src="../img/card-img.png" alt="card-picture" />
-						</figure>
-					</div>
+		<div class="page init">
+			<include src="html/parts/header.html"></include>
+			<main class="main main-wrapper">
+				<div class="ui">
+					<section class="test">
+						<!-- prettier-ignore -->
+						<include src="html/components/dropdown.html">
+				{
+					"className": "header__dropdown",
+					"options": ["UA", "RUS", "ENG"],
+					"placeholder": "",
+					"choice": "UA"
+				}
+			</include>
+						<!-- prettier-ignore -->
+						<include src="html/components/filter.html">
+							{
+								"title": "Filter Title",
+								"options": [
+									{
+										"name": "Option 1",
+										"value": "val-1"
+									},
+									{
+										"name": "Option 2",
+										"value": "val-2"
+									},
+									{
+										"name": "Option 3",
+										"value": "val-3"
+									}
+								]
+							}
+						</include>
+					</section>
 				</div>
-			</div>
+			</main>
+			<include src="html/parts/footer.html"></include>
 		</div>
 	</body>
 </html>

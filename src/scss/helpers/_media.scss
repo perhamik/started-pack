@@ -1,7 +1,7 @@
 // Media
 // @include screen-xxxl {}   $screen-xl: 1680px;
 // @include screen-xxl {}   $screen-xl: 1440px;
-// @include screen-xl {}   $screen-xl: 1280px;
+// @include screen-xl {}   $screen-xl: 1200px;
 // @include screen-xhl {}  $screen-xhl: 1080px;
 // @include screen-lg {}   $screen-lg: 992px;
 // @include screen-md {}   $screen-md: 768px;
@@ -14,7 +14,7 @@ $screen-sm: 576px;
 $screen-md: 768px;
 $screen-lg: 992px;
 $screen-xhl: 1080px;
-$screen-xl: 1280px;
+$screen-xl: 1200px;
 $screen-xxl: 1440px;
 $screen-xxxl: 1680px;
 
@@ -24,6 +24,12 @@ $screen-xxxl: 1680px;
 
 @mixin landscape {
 	@media (orientation: landscape) {
+		@content;
+	}
+}
+
+@mixin portrait {
+	@media (orientation: portrait) {
 		@content;
 	}
 }
@@ -63,7 +69,7 @@ $screen-xxxl: 1680px;
 	}
 }
 
-// max-width: 1280px
+// max-width: 1200px
 @mixin screen-xl {
 	@media only screen and (max-width: #{$screen-xl}) {
 		@content;

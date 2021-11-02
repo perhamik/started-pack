@@ -1,7 +1,7 @@
 @use '../helpers' as *;
 
 @mixin fontFamily {
-	font-family: 'Neue Machina', sans-serif;
+	font-family: sans-serif;
 }
 
 * {
@@ -22,58 +22,26 @@
 
 @mixin h1 {
 	@include font(80px, 1, 700);
-
-	@include screen-sm {
-		@include font(32px, 40px, 700);
-	}
 }
 
 @mixin h2 {
 	@include font(60px, 76px, 700);
-
-	@include screen-sm {
-		@include font(24px, 28px, 700);
-	}
 }
 
 @mixin h3 {
 	@include font(44px, 60px, 700);
-
-	@include screen-sm {
-		@include font(20px, 24px, 700, 0.03em);
-	}
 }
 
 @mixin h4 {
 	@include font(32px, 44px, 700);
-
-	@include screen-sm {
-		@include font(16px, 24px, 700);
-	}
 }
 
 @mixin h5 {
 	@include font(24px, 32px, 800, 0.12em);
-
-	@include screen-sm {
-		@include font(14px, 20px, 800, 0.12em);
-	}
 }
 
 @mixin h6 {
 	@include font(20px, 28px, 800);
-}
-
-@mixin h7 {
-	@include font(16px, 24px, 700);
-}
-
-@mixin caption {
-	@include font(14px, 20px, 700, 0.12em);
-
-	@include screen-sm {
-		@include font(10px, 14px, 700, 0.12em);
-	}
 }
 
 @mixin text-20 {
@@ -92,12 +60,8 @@
 	@include font(11px, 14px, 400);
 }
 
-@mixin upper {
+@mixin uppercase {
 	text-transform: uppercase;
-}
-
-.h0 {
-	@include h0;
 }
 
 h1,
@@ -130,18 +94,21 @@ h6,
 	@include h6;
 }
 
-.h7 {
-	@include h7;
-}
-
 .uppercase,
 .ttu {
-	@include upper;
+	@include uppercase;
 }
 
-.caption {
-	@include caption;
-	@include upper;
+.tal {
+	text-align: left;
+}
+
+.tac {
+	text-align: center;
+}
+
+.tar {
+	text-align: right;
 }
 
 .text {

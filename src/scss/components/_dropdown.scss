@@ -1,0 +1,165 @@
+@use '../helpers' as *;
+@use '../font' as *;
+
+.dropdown {
+	@mixin transition {
+		transition: 350ms ease;
+	}
+
+	display: flex;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+
+	&,
+	&__toggle,
+	&__placeholder {
+		@include text-16;
+	}
+
+	&__arrow {
+		margin-left: 0.5em;
+	}
+
+	&__placeholder {
+		opacity: 0.6;
+		margin-right: 1em;
+	}
+
+	&__arrow {
+		@include transition;
+		@include arrow-bottom;
+
+		display: block;
+		width: 7px;
+		height: 7px;
+		transform-origin: center;
+	}
+
+	&__toggle {
+		max-width: 280px;
+		cursor: pointer;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		@include transition;
+	}
+
+	&__list {
+		position: absolute;
+		inset: 100% auto auto 50%;
+		width: 100%;
+		height: fit-content;
+		z-index: 10;
+		transform: translateX(-50%);
+		max-height: 50vh;
+		overflow-y: auto;
+		@include transition;
+
+		&[aria-expanded='false'] {
+			pointer-events: none;
+			opacity: 0;
+		}
+
+		&[aria-expanded='true'] {
+			.dropdown__arrow {
+				transform: scaleY(-1);
+			}
+		}
+
+		li {
+			height: inherit;
+			outline: none;
+
+			@include transition;
+
+			@include hover {
+				&:hover {
+					color: var(--red);
+				}
+			}
+
+			&:focus {
+				color: var(--red);
+			}
+		}
+	}
+
+	&__item {
+		position: relative;
+		display: flex;
+		gap: 4px;
+		align-items: center;
+
+		a {
+			transition: inherit;
+		}
+
+		.dropdown {
+			&__arrow {
+				transition: inherit;
+			}
+
+			&__list {
+				opacity: 0;
+				pointer-events: none;
+				min-width: 100%;
+				width: fit-content;
+				background-color: var(--bg);
+				margin: {
+					left: -1.5em;
+				}
+				left: 88%;
+			}
+
+			&__option {
+				padding: {
+					left: 1.5em;
+					right: 1.5em;
+				}
+				margin: 0.5em 0;
+				white-space: nowrap;
+
+				@include hover {
+					&:hover {
+						a {
+							color: var(--red);
+						}
+					}
+				}
+			}
+		}
+
+		@include hover {
+			&:hover {
+				.dropdown {
+					&__list {
+						pointer-events: all;
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+
+	&-hide {
+		display: none;
+	}
+
+	@include hover {
+		&:hover {
+			.dropdown {
+				&__arrow {
+					&::before,
+					&::after {
+						background-color: var(--red);
+					}
+				}
+				&__toggle {
+					color: var(--red);
+				}
+			}
+		}
+	}
+}

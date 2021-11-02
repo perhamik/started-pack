@@ -1,3 +1,6 @@
+@use 'sass:list';
+@use 'sass:math';
+
 @function map-set($map, $key, $value) {
 	$new: (
 		$key: $value,
@@ -13,8 +16,23 @@
 	@return $transitionDelayDefault + ($transitionDelayStepDefault * $index);
 }
 
-@function cut-border($size: 12px) {
-	$st: $size;
-	$en: calc(100% - #{$size});
-	@return polygon($st 0, $en 0%, 100% $st, 100% $en, $en 100%, $st 100%, 0% $en, 0% $st);
+@function cut-border($tl: 12px, $br: $tl, $bl: $br, $tr: $tl) {
+	$clipTL: (math.round($tl) 0%, calc(100% - #{math.round($tr)}) 0%);
+	$clipTR: (100% math.round($tr), 100% calc(100% - #{math.round($br)}));
+	$clipBR: (calc(100% - #{math.round($br)}) 100%, math.round($bl) 100%);
+	$clipBL: (0% calc(100% - #{math.round($bl)}), 0% math.round($tl));
+
+	$topPoints: list.join($clipTL, $clipTR);
+	$bottomPoints: list.join($clipBR, $clipBL);
+	$polygon: list.join($topPoints, $bottomPoints);
+
+	@return polygon($polygon);
+}
+
+@function get-row($index) {
+	//$even: (($index % 2) + 1) % 2;
+	$odd: $index % 2;
+	$rowStart: $index + $odd;
+	$rowEnd: $rowStart + 1;
+	@return $rowStart;
 }

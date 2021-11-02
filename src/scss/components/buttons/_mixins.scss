@@ -1,0 +1,17 @@
+@use '../../helpers' as *;
+
+@mixin button {
+	cursor: pointer;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin link {
+	cursor: pointer;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}

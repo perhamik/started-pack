@@ -1,44 +1,10 @@
 @use '../helpers' as *;
 
-$baseDelay: 200ms;
-$delayStep: 100ms;
-
-@mixin animInit {
-	&:not(.anim-out) {
-		@content;
-	}
-}
-
-.transition {
-	&,
-	&-middle,
-	&-long {
-		transition-timing-function: ease-out;
-		transition-delay: #{$baseDelay};
-	}
-
-	transition-duration: 500ms;
-
-	&-middle {
-		transition-duration: 950ms;
-	}
-
-	&-long {
-		transition-duration: 2150ms;
-	}
-}
-
-.anim {
-	@extend .transition;
-
-	&-container {
-		overflow: hidden;
-	}
-
-	@for $i from 1 through 10 {
-		&-order-#{$i},
-		&[data-anim-order='#{$i}'] {
-			transition-delay: #{$delayStep * $i + $baseDelay};
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: {
+			duration: 100ms;
+			timing-function: linear;
 		}
 	}
 }

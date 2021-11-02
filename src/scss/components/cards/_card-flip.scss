@@ -1,0 +1,29 @@
+@use '../../helpers' as *;
+@use '../../font' as *;
+@use './mixins' as *;
+
+.card-flip {
+	@include card;
+	perspective: 600px;
+
+	&__wrapper {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		transform-style: preserve-3d;
+		transition: all 450ms ease-in-out;
+
+		&:hover {
+			transform: rotateY(180deg);
+		}
+	}
+
+	&__front,
+	&__back {
+		@include card-flip-side;
+	}
+
+	&__back {
+		transform: rotateY(180deg);
+	}
+}

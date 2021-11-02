@@ -1,0 +1,6 @@
+@use '../../helpers' as *;
+
+@mixin input {
+	cursor: pointer;
+	display: flex;
+}
