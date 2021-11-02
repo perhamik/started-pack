@@ -6,20 +6,6 @@ const getHeaderForceState = () => {
 	return conditions.length > 0
 }
 
-const setLanguage = (selectedElem, current, options, headerSearch) => {
-	const searchOption = options.filter((item) => {
-		item.classList.toggle('dropdown-hide', false)
-		return item === current
-	})
-	const activeOption = searchOption[0]
-
-	activeOption?.classList?.toggle('dropdown-hide', true)
-	const optionValue = activeOption?.dataset?.value ?? 'ua'
-
-	selectedElem.textContent = activeOption?.textContent?.trim()
-	headerSearch.dataset.current = optionValue
-}
-
 //debounce wheel handler
 const updateHeader = debounce(
 	(e: WheelEvent) => {
@@ -29,34 +15,6 @@ const updateHeader = debounce(
 	30,
 	true,
 )
-
-const initSearch = (header: HTMLElement) => {
-	return new Promise((res) => {
-		const headerSearch: HTMLElement = header.querySelector('.header__dropdown')
-
-		const options = [...headerSearch?.querySelector('.dropdown__list')?.children]
-		const activeClass = headerSearch?.dataset?.classActive ?? 'dropdown-active'
-		const selectClass = headerSearch?.dataset?.classSelect ?? 'dropdown__selected'
-		const selectedElem = headerSearch?.querySelector(`.${selectClass}`)
-
-		setLanguage(selectedElem, options[0], options, headerSearch)
-
-		headerSearch &&
-			headerSearch.addEventListener(
-				'click',
-				(e) => {
-					const choice = e.target as HTMLElement
-					if (choice.dataset.value) {
-						setLanguage(selectedElem, choice, options, headerSearch)
-					}
-					headerSearch.classList.toggle(activeClass, !headerSearch.classList.contains(activeClass))
-				},
-				false,
-			)
-
-		res(true)
-	})
-}
 
 const initBurger = () => {
 	return new Promise((res) => {

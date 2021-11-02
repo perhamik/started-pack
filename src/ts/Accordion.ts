@@ -7,9 +7,9 @@ export class Accordion {
 	isClosing: boolean
 	isExpanding: boolean
 
-	constructor(el) {
+	constructor(el: HTMLElement) {
 		// Store the <details> element
-		this.card = el.closest('.card-idea')
+		this.card = el.closest('.card')
 		this.el = el
 		// Store the <summary> element
 		this.summary = el.querySelector('summary')
@@ -30,16 +30,16 @@ export class Accordion {
 		}
 	}
 
-	isElementOpen() {
+	isElementOpen(): boolean {
 		return this.el.getAttribute('open') === 'true'
 	}
 
-	setElementState(state: boolean) {
+	setElementState(state: boolean): void {
 		if (state) this.el.setAttribute('open', 'true')
 		else this.el.removeAttribute('open')
 	}
 
-	onClick(e) {
+	onClick(e: Event): void {
 		// Stop default behaviour from the browser
 		e.preventDefault()
 		// Add an overflow on the <details> to avoid content overflowing
@@ -59,7 +59,7 @@ export class Accordion {
 		}
 	}
 
-	shrink() {
+	shrink(): void {
 		// Set the element as "being closed"
 		this.isClosing = true
 
@@ -92,7 +92,7 @@ export class Accordion {
 		this.animation.oncancel = () => (this.isClosing = false)
 	}
 
-	open() {
+	open(): void {
 		// Apply a fixed height on the element
 		this.el.style.height = `${this.el.offsetHeight}px`
 		// Force the [open] attribute on the details element
@@ -101,7 +101,7 @@ export class Accordion {
 		window.requestAnimationFrame(() => this.expand())
 	}
 
-	expand() {
+	expand(): void {
 		// Set the element as "being expanding"
 		this.isExpanding = true
 		// Get the current fixed height of the element
@@ -132,7 +132,7 @@ export class Accordion {
 		this.animation.oncancel = () => (this.isExpanding = false)
 	}
 
-	onAnimationFinish(open: boolean) {
+	onAnimationFinish(open: boolean): void {
 		// Set the open attribute based on the parameter
 		this.setElementState(open)
 		// Clear the stored animation

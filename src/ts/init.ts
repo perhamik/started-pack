@@ -1,9 +1,6 @@
 import {Accordion} from './Accordion'
 import {getHeaderHeight} from './utils'
 import {initHeader} from './header'
-import {initButtons} from './buttons'
-import {initCards} from './cards'
-import {initInputs} from './inputs'
 import {initPopups} from './popup'
 import {initWords} from './words'
 
@@ -56,10 +53,7 @@ const initQueue = (): void => {
 	if (state.initResult) return
 
 	initHeader()
-		.then(initButtons)
 		.then(initPopups)
-		.then(initInputs)
-		.then(initCards)
 		.then(initWords)
 		.then(() => {
 			state.initResult = true
