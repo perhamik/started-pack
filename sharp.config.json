@@ -1,0 +1,23 @@
+{
+	"jpeg": {
+		"quality": 75,
+		"chromaSubsampling": "4:4:4"
+	},
+	"webp": {
+		"quality": 100,
+		"alphaQuality": 100,
+		"lossless": true,
+		"nearLossless": true,
+		"smartSubsample": false,
+		"reductionEffort": 4
+	},
+	"png": {
+		"progressive": false,
+		"compressionLevel": 7,
+		"adaptiveFiltering": true,
+		"palette": true,
+		"quality": 100,
+		"dither": 1.0,
+		"force": true
+	}
+}

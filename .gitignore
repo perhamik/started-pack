@@ -8,3 +8,4 @@ yarn.lock
 .cache
 .parcel-cache
 .keep
+.log

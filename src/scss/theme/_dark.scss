@@ -7,11 +7,3 @@ $colors: colors.getTheme('dark');
 		--#{$name}: #{$color};
 	}
 }
-
-* {
-	color: map-get($colors, 'text');
-}
-
-body {
-	background-color: map-get($colors, 'bg');
-}

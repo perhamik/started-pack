@@ -1,1 +1,9 @@
 @use '../helpers' as *;
+
+.hover,
+a,
+button,
+.link,
+.button {
+	cursor: pointer;
+}

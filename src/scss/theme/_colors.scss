@@ -1,20 +1,23 @@
 $colorsDark: (
-	'red': #ea5445,
-	'red-darker': rgb(187, 67, 55),
-	'green': #62d06d,
-	'yellow': #f7c444,
-	'white': #ffffff,
-	'black': #000000,
-	'dark': #1f1f1f,
-	'grey': #333333,
-	'grey-light': #454545,
+	'valid': #62d06d,
+	'invalid': #da1010,
 	'bg': #000000,
 	'text': #ffffff,
 );
 
-$colorsLight: $colorsDark;
+//$colorsLight: $colorsDark;
 
-$colors: ();
+$colorsLight: (
+	'valid': #62d06d,
+	'invalid': #da1010,
+	'bg': #ffffff,
+	'text': #000000,
+);
+
+$colors: (
+	'white': #ffffff,
+	'black': #000000,
+);
 
 @function getTheme($name: 'light') {
 	@if $name == 'dark' {

@@ -1,0 +1,7 @@
+{
+	"sync": "async",
+	"verbose": true,
+	"indentType": "tab",
+	"indentWidth": 1,
+	"outputStyle": "compressed"
+}

@@ -8,15 +8,12 @@
 	@return map-merge($map, $new);
 }
 
-@function getTransitionTime($index: 0) {
-	@return $transitionTimeDefault + ($transitionStepDefault * $index);
-}
+@function cut-border($topLeft: 12px, $bottomRight: $topLeft, $bottomLeft: $bottomRight, $topRight: $topLeft) {
+	$tl: $topLeft;
+	$br: $bottomRight;
+	$bl: $bottomLeft;
+	$tr: $topRight;
 
-@function getTransitionDelay($index: 0) {
-	@return $transitionDelayDefault + ($transitionDelayStepDefault * $index);
-}
-
-@function cut-border($tl: 12px, $br: $tl, $bl: $br, $tr: $tl) {
 	$clipTL: (math.round($tl) 0%, calc(100% - #{math.round($tr)}) 0%);
 	$clipTR: (100% math.round($tr), 100% calc(100% - #{math.round($br)}));
 	$clipBR: (calc(100% - #{math.round($br)}) 100%, math.round($bl) 100%);
@@ -29,10 +26,58 @@
 	@return polygon($polygon);
 }
 
-@function get-row($index) {
-	//$even: (($index % 2) + 1) % 2;
-	$odd: $index % 2;
-	$rowStart: $index + $odd;
-	$rowEnd: $rowStart + 1;
-	@return $rowStart;
+@function getBevelInnerPath($size, $offset) {
+	$v0: math.round($offset);
+	$v1: $v0 * math.sqrt(2);
+	$w: math.round($size + $v1 - $v0);
+
+	$cords: (
+		'p0': $v1,
+		'p1': $w,
+		'p2': calc(100% - #{$w}),
+		'p3': calc(100% - #{$v1}),
+	);
+
+	@return (
+		map-get($cords, 'p1') map-get($cords, 'p3'),
+		map-get($cords, 'p0') map-get($cords, 'p2'),
+		map-get($cords, 'p0') map-get($cords, 'p1'),
+		map-get($cords, 'p1') map-get($cords, 'p0'),
+		map-get($cords, 'p2') map-get($cords, 'p0'),
+		map-get($cords, 'p3') map-get($cords, 'p1'),
+		map-get($cords, 'p3') map-get($cords, 'p2'),
+		map-get($cords, 'p2') map-get($cords, 'p3'),
+		map-get($cords, 'p1') map-get($cords, 'p3')
+	);
+}
+
+@function getBevelPath($size: 12px, $offset: 0px) {
+	$cords: (
+		'p0': 0px,
+		'p1': math.round($size),
+		'p2': calc(100% - #{math.round($size)}),
+		'p3': 100%,
+	);
+
+	$mergePoint: map-get($cords, 'p1') map-get($cords, 'p3');
+
+	$tl: (map-get($cords, 'p1') map-get($cords, 'p0'), map-get($cords, 'p0') map-get($cords, 'p1'));
+	$bl: (map-get($cords, 'p0') map-get($cords, 'p2'), $mergePoint);
+
+	$br: (map-get($cords, 'p2') map-get($cords, 'p3'), map-get($cords, 'p3') map-get($cords, 'p2'));
+	$tr: (map-get($cords, 'p3') map-get($cords, 'p1'), map-get($cords, 'p2') map-get($cords, 'p0'));
+	$outerFirst: list.join($tl, $bl);
+	$outerLast: list.join($br, $tr);
+	$innerFrame: getBevelInnerPath($size, $offset);
+
+	@if ($offset > 0px) {
+		@return $outerFirst, $innerFrame, $mergePoint, $outerLast;
+	} @else {
+		@return $outerFirst, $outerLast;
+	}
+}
+
+@function slice-border($size: 12px, $width: 1px) {
+	$polygon: getBevelPath($size, $width);
+	@return polygon($polygon);
 }

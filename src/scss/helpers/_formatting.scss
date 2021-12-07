@@ -1,0 +1,298 @@
+@use './media' as *;
+@use './mixins' as *;
+
+//-------------------------------------------------------
+//------------------  Font Family  ----------------------
+//---------------------  BEGIN  -------------------------
+//-------------------------------------------------------
+
+@mixin fontFamilyPrimary {
+	font-family: sans-serif;
+}
+
+* {
+	@include fontFamilyPrimary;
+}
+
+//-------------------------------------------------------
+//--------------------  Heading  ------------------------
+//---------------------  BEGIN  -------------------------
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+//--------------------  H1 Title ------------------------
+//-------------------------------------------------------
+
+@mixin h1-desktop {
+	@include font(32px);
+}
+
+@mixin h1-tablet {
+	@include font(28px);
+}
+
+@mixin h1-mobile {
+	@include font(24px);
+}
+
+@mixin h1 {
+	@include h1-desktop;
+
+	@include screen-xhl {
+		@include h1-tablet;
+	}
+
+	@include screen-sm {
+		@include h1-mobile;
+	}
+}
+
+//-------------------------------------------------------
+//--------------------  H2 Title ------------------------
+//-------------------------------------------------------
+
+@mixin h2-desktop {
+	@include font(28px);
+}
+
+@mixin h2-tablet {
+	@include font(24px);
+}
+
+@mixin h2-mobile {
+	@include font(22px);
+}
+
+@mixin h2 {
+	@include h2-desktop;
+
+	@include screen-xhl {
+		@include h2-tablet;
+	}
+
+	@include screen-sm {
+		@include h2-mobile;
+	}
+}
+
+//-------------------------------------------------------
+//--------------------  H3 Title ------------------------
+//-------------------------------------------------------
+
+@mixin h3-desktop {
+	@include font(28px);
+}
+
+@mixin h3-tablet {
+	@include font(24px);
+}
+
+@mixin h3-mobile {
+	@include font(22px);
+}
+
+@mixin h3 {
+	@include h3-desktop;
+
+	@include screen-xhl {
+		@include h3-tablet;
+	}
+
+	@include screen-sm {
+		@include h3-mobile;
+	}
+}
+
+//-------------------------------------------------------
+//--------------------  H4 Title ------------------------
+//-------------------------------------------------------
+
+@mixin h4-desktop {
+	@include font(28px);
+}
+
+@mixin h4-tablet {
+	@include font(24px);
+}
+
+@mixin h4-mobile {
+	@include font(22px);
+}
+
+@mixin h4 {
+	@include h4-desktop;
+
+	@include screen-xhl {
+		@include h4-tablet;
+	}
+
+	@include screen-sm {
+		@include h4-mobile;
+	}
+}
+
+//-------------------------------------------------------
+//--------------------  H5 Title ------------------------
+//-------------------------------------------------------
+
+@mixin h5-desktop {
+	@include font(28px);
+}
+
+@mixin h5-tablet {
+	@include font(24px);
+}
+
+@mixin h5-mobile {
+	@include font(22px);
+}
+
+@mixin h5 {
+	@include h5-desktop;
+
+	@include screen-xhl {
+		@include h5-tablet;
+	}
+
+	@include screen-sm {
+		@include h5-mobile;
+	}
+}
+
+//-------------------------------------------------------
+//--------------------  H6 Title ------------------------
+//-------------------------------------------------------
+
+@mixin h6-desktop {
+	@include font(28px);
+}
+
+@mixin h6-tablet {
+	@include font(24px);
+}
+
+@mixin h6-mobile {
+	@include font(22px);
+}
+
+@mixin h6 {
+	@include h6-desktop;
+
+	@include screen-xhl {
+		@include h6-tablet;
+	}
+
+	@include screen-sm {
+		@include h6-mobile;
+	}
+}
+
+//-------------------------------------------------------
+//-------------------------------------------------------
+
+h1,
+.h1 {
+	@include h1;
+}
+
+h2,
+.h2 {
+	@include h2;
+}
+
+h3,
+.h3 {
+	@include h3;
+}
+
+h4,
+.h4 {
+	@include h4;
+}
+
+h5,
+.h5 {
+	@include h5;
+}
+
+h6,
+.h6 {
+	@include h6;
+}
+
+//-------------------------------------------------------
+//--------------------  Heading  ------------------------
+//----------------------  END  --------------------------
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+//-------------------  Paragraph ------------------------
+//---------------------  BEGIN  -------------------------
+//-------------------------------------------------------
+
+@mixin text-l {
+	@include font(20px);
+}
+
+@mixin text-m {
+	@include font(16px);
+}
+
+@mixin text-s {
+	@include font(14px);
+}
+
+@mixin text-xs {
+	@include font(12px);
+}
+
+.text {
+	&-l {
+		@include text-l;
+	}
+	&-m {
+		@include text-m;
+	}
+	&-s {
+		@include text-s;
+	}
+	&-xs {
+		@include text-xs;
+	}
+}
+
+//-------------------------------------------------------
+//-------------------  Paragraph ------------------------
+//----------------------  END  --------------------------
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+//---------------  Align / Transform --------------------
+//---------------------  BEGIN  -------------------------
+//-------------------------------------------------------
+
+@mixin uppercase {
+	text-transform: uppercase;
+}
+
+.uppercase,
+.ttu {
+	@include uppercase;
+}
+
+.tal {
+	text-align: left;
+}
+
+.tac {
+	text-align: center;
+}
+
+.tar {
+	text-align: right;
+}
+
+//-------------------------------------------------------
+//---------------  Align / Transform --------------------
+//----------------------  END  --------------------------
+//-------------------------------------------------------

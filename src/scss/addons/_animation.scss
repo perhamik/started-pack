@@ -1,10 +1,27 @@
 @use '../helpers' as *;
 
-@media (prefers-reduced-motion: reduce) {
-	* {
-		transition: {
-			duration: 100ms;
-			timing-function: linear;
+@mixin animInit {
+	&:not(.anim-out) {
+		@content;
+	}
+}
+
+div.page {
+	& {
+		&,
+		&::before,
+		&::after {
+			transition: 360ms ease-in-out 0ms;
 		}
 	}
+
+	&.unloaded,
+	&.init,
+	&.no-anim {
+		opacity: 0;
+	}
+}
+
+.transparent {
+	opacity: 0;
 }

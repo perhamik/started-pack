@@ -7,9 +7,16 @@ export const lerp = (a: number, b: number, n: number): number => (1 - n) * a + b
 
 export const distance = (x1: number, y1: number, x2: number, y2: number): number => Math.hypot(x1 - x2, y1 - y2)
 
+export const isFocusEvent = (e: Event): boolean => e.type.includes('focus')
+
 export const getHeaderHeight = (): number => {
 	const header: HTMLHeadingElement = document.querySelector('.header')
-	return header ? header.offsetHeight : 64
+	return header ? Math.floor(header.offsetHeight - 0.5) : 64
+}
+
+export const getHeaderVisibleHeight = (): number => {
+	const header: HTMLHeadingElement = document.querySelector('.header')
+	return header && header.classList.contains('header-hide') ? 0 : getHeaderHeight()
 }
 
 export const delay = (ms: number) =>
@@ -47,7 +54,7 @@ export const similarSelector = (selector: string): string => {
 //check if child element belongs the parent
 //boolean
 export const isChildOf = (child: HTMLElement, parent: HTMLElement): boolean => {
-	const parentSelectors = [...parent.classList].map((cl) => `.${cl}`)
+	const parentSelectors = Array.from(parent.classList).map((cl) => `.${cl}`)
 	parent.getAttribute('id') && parentSelectors.push(`#${parent.getAttribute('id')}`)
 
 	return parentSelectors.filter((selector) => child.closest(selector)).length > 0
@@ -68,8 +75,6 @@ export const toggleHover = debounce(
 
 export const toggleOpen = debounce(
 	(e: Event) => {
-		//define event type => true if cursor in
-		//false if cursor out
 		const target: HTMLElement = e.currentTarget as HTMLElement
 		const state = target.classList.contains('open')
 		//currentTarget => element on which assigned the listener
@@ -78,3 +83,19 @@ export const toggleOpen = debounce(
 	30,
 	true,
 )
+
+interface togglerFunction {
+	(e: Event, elem: HTMLElement): void
+}
+
+export const toggleState = debounce(
+	(e: Event, toggler: togglerFunction) => {
+		toggler(e, e.currentTarget as HTMLElement)
+	},
+	30,
+	true,
+)
+
+export const getHTMLElement = (elem: Element): HTMLElement | null => {
+	return elem ? (elem as HTMLElement) : null
+}

@@ -1,8 +1,6 @@
-import {Accordion} from './Accordion'
-import {getHeaderHeight} from './utils'
-import {initHeader} from './header'
-import {initPopups} from './popup'
-import {initWords} from './words'
+import {getHeaderHeight, delay} from './utils'
+
+history.scrollRestoration = 'manual'
 
 const state = {
 	init: false,
@@ -18,46 +16,20 @@ const setHeaderHeight = (): void => {
 	document.documentElement.style.setProperty('--header-height', `${getHeaderHeight()}px`)
 }
 
-const cardHover = (e: MouseEvent) => {
-	const target = e.currentTarget as HTMLElement
-	const card = target ? target.children[0] : null
-	if (!card) return
-
-	card?.classList.toggle('hover', e.type.includes('mouseover'))
-}
-
-const initPage = () => {
-	const ideasList = document.querySelectorAll('.ideas__item')
-	const details = document.querySelectorAll('details')
-	const page = document.querySelector('.page')
-
-	if (page) {
-		setTimeout(() => {
-			page.classList.toggle('init', false)
-		}, 600)
-	}
-
-	if (details.length) {
-		details.forEach((el) => new Accordion(el))
-	}
-
-	if (ideasList.length) {
-		ideasList.forEach((item) => {
-			item.addEventListener('mouseover', (e) => cardHover, {passive: true})
-			item.addEventListener('mouseout', (e) => cardHover, {passive: true})
-		})
-	}
+const coreInit = (): Promise<boolean> => {
+	return new Promise((res) => {
+		setVh()
+		setHeaderHeight()
+		res(true)
+	})
 }
 
 const initQueue = (): void => {
 	if (state.initResult) return
 
-	initHeader()
-		.then(initPopups)
-		.then(initWords)
+	coreInit()
 		.then(() => {
 			state.initResult = true
-			initPage()
 		})
 		.catch((msg) => {
 			console.warn(msg)
@@ -70,13 +42,11 @@ const initQueue = (): void => {
 const init = (): void => {
 	switch (document.readyState) {
 		case 'interactive':
-			setVh()
-			setHeaderHeight()
+			window.scrollTo({top: 0})
+			coreInit()
 			break
 
 		case 'complete':
-			setVh()
-			setHeaderHeight()
 			initQueue()
 			break
 
@@ -85,4 +55,15 @@ const init = (): void => {
 	}
 }
 
-document.addEventListener('readystatechange', init, false)
+const initPageSwitch = () => {
+	const page = document.querySelector('div.page') ? (document.querySelector('div.page') as HTMLElement) : document.body
+
+	window.addEventListener('blur', () => page.classList.toggle('blur', true))
+	window.addEventListener('focus', () => page.classList.toggle('blur', false))
+	window.addEventListener('beforeunload', () => page.classList.add('unloaded'))
+	window.addEventListener('unload', async () => await delay(500))
+	window.onunload = async () => await delay(500)
+}
+
+document.addEventListener('DOMContentLoaded', () => initPageSwitch(), {once: true})
+document.addEventListener('readystatechange', () => init(), false)

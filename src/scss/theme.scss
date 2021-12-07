@@ -1,0 +1,25 @@
+@use './theme/colors' as colors;
+
+:root {
+	color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: light) {
+	$colors: colors.getTheme('light');
+
+	:root {
+		@each $name, $color in $colors {
+			--#{$name}: #{$color};
+		}
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	$colors: colors.getTheme('dark');
+
+	:root {
+		@each $name, $color in $colors {
+			--#{$name}: #{$color};
+		}
+	}
+}

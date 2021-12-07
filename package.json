@@ -1,38 +1,58 @@
 {
 	"name": "starter-kit",
-	"version": "3.0.0",
+	"version": "4.0.0",
 	"author": "sevnpro",
 	"license": "MIT",
 	"private": true,
-	"browserslist": "> 0.5%, last 10 versions, not dead",
+	"browserslist": "> 1%, last 10 versions, not dead",
+	"engines": {
+		"node": ">= 14"
+	},
 	"targets": {
-		"default": {
+		"stage": {
+			"engines": {
+				"browsers": "> last 4 versions, not dead"
+			},
 			"distDir": "./dist",
 			"context": "browser",
 			"outputFormat": "global",
 			"isLibrary": false,
 			"optimize": true,
-			"includeNodeModules": false
+			"includeNodeModules": true,
+			"scopeHoist": true,
+			"sourceMap": true
+		},
+		"prod": {
+			"engines": {
+				"browsers": "> 0.5%, last 10 versions, not dead"
+			},
+			"distDir": "./dist",
+			"context": "browser",
+			"outputFormat": "global",
+			"isLibrary": false,
+			"optimize": true,
+			"includeNodeModules": true,
+			"scopeHoist": true,
+			"sourceMap": false
 		},
 		"main": false
 	},
 	"scripts": {
-		"del": "del-cli --force dist",
-		"dev": "parcel serve src/html/*.html --no-cache --port 3000",
-		"serve": "parcel serve src/html/*.html --no-cache --port 3000 --open",
-		"build": "parcel build src/html/*.html --no-cache --no-content-hash --no-scope-hoist",
-		"prod": "del-cli --force dist && parcel build src/html/*.html --no-cache --no-content-hash --no-scope-hoist"
-	},
-	"dependencies": {
-		"parcel": "latest"
+		"del": "del-cli .parcel-cache dev dist --force",
+		"dev": "parcel serve src/html/*.html  --no-cache --port 3000",
+		"serve": "parcel serve src/html/*.html  --no-cache --port 3000 --open",
+		"build": "del-cli dist --force && parcel build src/html/*.html --target stage --no-cache",
+		"prod": "del-cli dist --force && parcel build src/html/*.html --target prod --no-cache --detailed-report 32"
 	},
 	"devDependencies": {
-		"@parcel/packager-raw-url": "^2.0.0",
 		"@parcel/transformer-sass": "latest",
-		"@parcel/transformer-webmanifest": "^2.0.0",
-		"del-cli": "^4.0.1",
+		"del-cli": "latest",
+		"parcel": "latest",
 		"posthtml-doctype": "latest",
 		"posthtml-include": "latest",
-		"sass": "^1.42.1"
+		"sass": "latest",
+		"sharp": "latest",
+		"swiper": "latest",
+		"typescript": "latest"
 	}
 }

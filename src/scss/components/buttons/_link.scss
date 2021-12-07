@@ -1,7 +1,4 @@
 @use '../../helpers' as *;
-@use '../../font' as *;
-@use './mixins' as *;
 
 .link {
-	@include link;
 }
